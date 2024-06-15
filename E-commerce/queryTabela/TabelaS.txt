@@ -1,0 +1,40 @@
+
+create table produtos(
+id int primary key,
+nome varchar2(45),
+preco float,
+descricao varchar2(45),
+data_cadastro date,
+categoria_id int);
+
+create table categorias(
+id int primary key,
+nome varchar2(45));
+
+create table itens_pedidos(
+id int primary key,
+quantidade int,
+preco_unit float,
+pedido_id int,
+produto_id int);
+
+create table cliente (
+id int primary key,
+nome varchar2(100),
+cpf varchar2(11));
+
+create table pedidos(
+id int primary key,
+data date,
+total_vendido float,
+cliente_id int);
+
+
+alter table produtos add foreign key (categoria_id) references categorias(id);
+alter table itens_pedidos add foreign key(pedido_id) references pedidos(id);
+alter table itens_pedidos add foreign key(produto_id) references produtos(id);
+alter table pedidos add foreign key(cliente_id) references cliente(id);
+
+
+
+
